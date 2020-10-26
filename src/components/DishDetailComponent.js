@@ -16,7 +16,11 @@ class DishDetail extends Component {
             {comments.map(comment => (
               <div key={comment.id} className="mb-3">
                 <li>{comment.comment}</li>
-                <li>{`-- ${comment.author} , ${comment.date}`}</li>
+                <li>{`-- ${comment.author} , ${new Intl.DateTimeFormat('en-us', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: '2-digit'
+                }).format(new Date(Date.parse(comment.date)))}`}</li>
               </div>))}
           </ul>
         </div>
@@ -53,9 +57,9 @@ class DishDetail extends Component {
 
   render() {
     return (
-      <>
+      <div className="container">
         {this.renderDish(this.props.dish)}
-      </>
+      </div>
     );
   }
 }
